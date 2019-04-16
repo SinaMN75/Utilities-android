@@ -403,6 +403,10 @@ class Util {
 		else setDrawable(imageView, placeholder)
 	}
 	
+	fun picasso(url: String?, imageView: ImageView) {
+		if (url != "") Picasso.get().load(url).into(imageView)
+	}
+	
 	// Map
 	
 	fun projection(googleMap: GoogleMap): Foursome<LatLng, LatLng, LatLng, LatLng> {
