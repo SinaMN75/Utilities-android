@@ -52,6 +52,7 @@ class InfiniteScrollProvider {
 					}
 				}
 				super.onScrolled(recyclerView, dx, dy)
+				
 			}
 		})
 	}

@@ -31,6 +31,7 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.2.0-alpha02'
     implementation 'android.arch.navigation:navigation-fragment-ktx:1.0.0'
     implementation 'android.arch.navigation:navigation-ui-ktx:1.0.0'
+    implementation 'com.android.volley:volley:1.1.1'
     implementation 'com.google.android.material:material:1.1.0-alpha07'
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation 'com.blankj:utilcodex:1.23.7'
@@ -42,4 +43,5 @@ dependencies {
     implementation 'com.yanzhenjie.permission:x:2.0.1'
     implementation 'com.desarrollodroide:fragmenttransactionextended:1'
     implementation 'com.airbnb.android:lottie:2.8.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 }

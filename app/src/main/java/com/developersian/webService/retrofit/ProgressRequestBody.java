@@ -1,4 +1,4 @@
-package com.developersian.webService;
+package com.developersian.webService.retrofit;
 import android.os.*;
 import okhttp3.*;
 import okio.*;
