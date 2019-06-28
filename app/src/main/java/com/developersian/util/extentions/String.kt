@@ -10,44 +10,41 @@ import java.text.DecimalFormat
 import java.text.NumberFormat
 import java.util.*
 
-fun isTextEmpty(view: TextView): Boolean = view.text.toString().trim().isEmpty()
-fun isTextEmpty(text: String): Boolean = text.trim().isEmpty()
+fun TextView.getTrimmedString(): String = this.text.toString().trim()
 
-fun getTrimmedString(view: TextView): String = view.text.toString().trim()
-fun getTrimmedString(text: String): String = text.trim()
+fun String.validatePhoneNumber(): Boolean = this.trim().length in 10..14 && this.trim().substring(0, 3).contains("0") || this.trim().substring(0, 3).contains("9")
 
-fun validatePhoneNumber(phoneNumber: String): Boolean = getTrimmedString(phoneNumber).length in 10..14 && getTrimmedString(phoneNumber).substring(0, 3).contains("0") || getTrimmedString(phoneNumber).substring(0, 3).contains("9")
+fun TextView.lengthOfEditText(): Int = this.getTrimmedString().length
 
-fun lengthOfEditText(view: TextView): Int = getTrimmedString(view).length
-
-fun validateInputByLength(editText: EditText, errorText: String, length: Int): Boolean = if (lengthOfEditText(editText) < length) {
-	editText.error = errorText
+fun EditText.validateInputByLength(errorText: String, length: Int): Boolean = if (this.lengthOfEditText() < length) {
+	this.error = errorText
 	false
 } else true
 
 fun showMoney(long: Long): String = DecimalFormat("#,###,###").format(long)
-fun showMoneyAsTyping(editText: EditText, editable: Editable, watcher: TextWatcher) {
-	editText.removeTextChangedListener(watcher)
+
+fun EditText.showMoneyAsTyping(editable: Editable, watcher: TextWatcher) {
+	this.removeTextChangedListener(watcher)
 	try {
 		var originalString = editable.toString()
 		if (originalString.contains(",")) originalString = originalString.replace(",".toRegex(), "")
 		val formatter = NumberFormat.getInstance(Locale.US) as DecimalFormat
 		formatter.applyPattern("#,###,###,###")
 		val formattedString = formatter.format(java.lang.Long.parseLong(originalString))
-		editText.setText(formattedString)
-		editText.setSelection(editText.text.length)
+		this.setText(formattedString)
+		this.setSelection(this.text.length)
 	} catch (nfe: NumberFormatException) {
 		nfe.printStackTrace()
 	}
-	editText.addTextChangedListener(watcher)
+	this.addTextChangedListener(watcher)
 }
 
-fun ageFromDate(year: Int): Int = Calendar.getInstance().get(Calendar.YEAR) - year
+fun Int.ageFromDate(): Int = Calendar.getInstance().get(Calendar.YEAR) - this
 
-fun toJson(string: String): JsonObject = JsonParser().parse(string).asJsonObject
+fun String.toJson(): JsonObject = JsonParser().parse(this).asJsonObject
 
-fun getPersianNumber(text: String): String {
-	var textPost = text
+fun String.getPersianNumber(): String {
+	var textPost = this
 	textPost = textPost.replace("1", "۱")
 	textPost = textPost.replace("2", "۲")
 	textPost = textPost.replace("3", "۳")
@@ -61,8 +58,8 @@ fun getPersianNumber(text: String): String {
 	return textPost
 }
 
-fun getEnglishNumber(text: String): String {
-	var textPost = text
+fun String.getEnglishNumber(): String {
+	var textPost = this
 	textPost = textPost.replace("۱", "1")
 	textPost = textPost.replace("۲", "2")
 	textPost = textPost.replace("۳", "3")
@@ -76,8 +73,8 @@ fun getEnglishNumber(text: String): String {
 	return textPost
 }
 
-fun getPersianDay(text: String): String {
-	var textPost = text
+fun String.getPersianDay(): String {
+	var textPost = this
 	textPost = textPost.replace("Sunday", "یک شنبه")
 	textPost = textPost.replace("Monday", "دو شنبه")
 	textPost = textPost.replace("Tuesday", "سه شنبه")
@@ -88,8 +85,8 @@ fun getPersianDay(text: String): String {
 	return textPost
 }
 
-fun getEnglishDay(text: String): String {
-	var textPost = text
+fun String.getEnglishDay(): String {
+	var textPost = this
 	textPost = textPost.replace("یک شنبه", "Sunday")
 	textPost = textPost.replace("دو‌شنبه", "Monday")
 	textPost = textPost.replace("سه‌شنبه", "Tuesday")
@@ -101,8 +98,8 @@ fun getEnglishDay(text: String): String {
 	return textPost
 }
 
-fun getPersianMonth(text: String): String {
-	var textPost = text
+fun String.getPersianMonth(): String {
+	var textPost = this
 	textPost = textPost.replace("01", "فروردین")
 	textPost = textPost.replace("02", "اردیبهشت")
 	textPost = textPost.replace("03", "خرداد")
@@ -118,8 +115,8 @@ fun getPersianMonth(text: String): String {
 	return textPost
 }
 
-fun getEnglishMonth(text: String): String {
-	var textPost = text
+fun String.getEnglishMonth(): String {
+	var textPost = this
 	textPost = textPost.replace("01", "January")
 	textPost = textPost.replace("02", "February")
 	textPost = textPost.replace("03", "March")

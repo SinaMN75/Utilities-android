@@ -5,26 +5,20 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.developersian.base.App
 
-fun linearLayoutForRecyclerView(vararg recyclerViews: RecyclerView, nested: Boolean = true, hasFixedSize: Boolean = true) {
-	for (i in recyclerViews) {
-		i.layoutManager = LinearLayoutManager(App.context)
-		i.isNestedScrollingEnabled = nested
-		i.setHasFixedSize(hasFixedSize)
-	}
+fun RecyclerView.linearLayoutManager(nested: Boolean = true, hasFixedSize: Boolean = true) {
+	this.layoutManager = LinearLayoutManager(App.context)
+	this.isNestedScrollingEnabled = nested
+	this.setHasFixedSize(hasFixedSize)
 }
 
-fun linearLayoutForRecyclerViewHorizontal(vararg recyclerViews: RecyclerView, nested: Boolean = true, hasFixedSize: Boolean = true) {
-	for (i in recyclerViews) {
-		i.layoutManager = LinearLayoutManager(App.context, LinearLayoutManager.HORIZONTAL, false)
-		i.isNestedScrollingEnabled = nested
-		i.setHasFixedSize(hasFixedSize)
-	}
+fun RecyclerView.horizontalLinearLayoutManager(nested: Boolean = true, hasFixedSize: Boolean = true) {
+	this.layoutManager = LinearLayoutManager(App.context, LinearLayoutManager.HORIZONTAL, false)
+	this.isNestedScrollingEnabled = nested
+	this.setHasFixedSize(hasFixedSize)
 }
 
-fun gridLayoutForRecyclerView(vararg recyclerViews: RecyclerView, spanCount: Int, nested: Boolean = true, hasFixedSize: Boolean = true) {
-	for (i in recyclerViews) {
-		i.layoutManager = GridLayoutManager(App.context, spanCount)
-		i.isNestedScrollingEnabled = nested
-		i.setHasFixedSize(hasFixedSize)
-	}
+fun RecyclerView.gridLayoutManager(spanCount: Int, nested: Boolean = true, hasFixedSize: Boolean = true) {
+	this.layoutManager = GridLayoutManager(App.context, spanCount)
+	this.isNestedScrollingEnabled = nested
+	this.setHasFixedSize(hasFixedSize)
 }

@@ -46,9 +46,8 @@ fun playFromAsset(path: String) {
 
 fun isFileExist(filePath: String): Boolean = File(filePath).exists()
 
-fun openFile(context: Context, fileName: String, filePath: String, type: String) = if (Build.VERSION.SDK_INT >= 26) context.startActivity(Intent(Intent.ACTION_VIEW).setDataAndType(FileProvider.getUriForFile(context, context.applicationContext.packageName + ".my.package.name.provider", File(filePath, "$fileName.pdf")), type).addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION))
-else context.startActivity(Intent().addFlags(Intent.FLAG_ACTIVITY_NEW_TASK).setAction(Intent.ACTION_VIEW).setDataAndType(Uri.fromFile(File("$filePath$fileName")), type))
-
+fun Context.openFile(fileName: String, filePath: String, type: String) = if (Build.VERSION.SDK_INT >= 26) this.startActivity(Intent(Intent.ACTION_VIEW).setDataAndType(FileProvider.getUriForFile(this, this.applicationContext.packageName + ".my.package.name.provider", File(filePath, "$fileName.pdf")), type).addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION))
+else this.startActivity(Intent().addFlags(Intent.FLAG_ACTIVITY_NEW_TASK).setAction(Intent.ACTION_VIEW).setDataAndType(Uri.fromFile(File("$filePath$fileName")), type))
 
 fun WebView.loadData(content: String, textColor: String = "black", backgroundColor: String = "white", mimeType: String = "text/html", encoding: String = "utf-8") = this.loadData(getHtmlLayout(content, textColor, backgroundColor), mimeType, encoding)
 
@@ -58,4 +57,3 @@ fun Context.hideKeyboard(view: View) {
 }
 
 fun View.hideKeyboardOnClick() = this.setOnClickListener { App.context.hideKeyboard(this) }
-

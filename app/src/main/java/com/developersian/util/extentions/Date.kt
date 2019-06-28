@@ -17,9 +17,9 @@ private fun parseGrg(date: String): PersianDate = getPersianDateFormat().parseGr
 
 private fun getPersianDateFormat(): PersianDateFormat = PersianDateFormat("yyyy-MM-dd")
 
-fun showDatePicker(textView: TextView, activity: Activity) {
+fun Activity.showDatePicker(textView: TextView) {
 	textView.setOnClickListener {
-		getPersianDatePickerDialog(activity).setListener(object : Listener {
+		getPersianDatePickerDialog(this).setListener(object : Listener {
 			override fun onDismissed() {}
 			override fun onDateSelected(persianCalendar: PersianCalendar) {
 				val month: String = if (persianCalendar.persianMonth.toString().length == 1) "0${persianCalendar.persianMonth}"
@@ -34,7 +34,7 @@ fun showDatePicker(textView: TextView, activity: Activity) {
 				val grgDay: String? = if (gregorianDate.grgDay.toString().length == 1) "0${gregorianDate.grgDay}"
 				else gregorianDate.grgDay.toString()
 				
-				textView.text = getPersianNumber(persianDate).replace("-", "/")
+				textView.text = persianDate.getPersianNumber().replace("-", "/")
 				textView.tag = "${gregorianDate.grgYear}-$grgMonth-$grgDay"
 			}
 		}).show()

@@ -9,37 +9,56 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.developersian.util.Utilities.Toolkit
-import java.util.*
 
-fun startActivity(clz: Class<out Activity>, vararg extra: String = arrayOf(""), enterAnim: Int = android.R.anim.slide_in_left, exitAnim: Int = android.R.anim.slide_out_right) {
+fun startActivity(clz: Class<out Activity>,
+                  vararg extra: Pair<String, Any>,
+                  enterAnim: Int = android.R.anim.slide_in_left,
+                  exitAnim: Int = android.R.anim.slide_out_right) {
 	val context = Toolkit.getTopActivityOrApp()
 	val bundle = Bundle()
-	for (index in 0 until extra.size) bundle.putString(index.toString(), extra[index])
+	for (i in extra) {
+		if (i.second is Boolean)
+			bundle.putBoolean(i.first, i.second.toString().toBoolean())
+		if (i.second is String)
+			bundle.putString(i.first, i.second.toString())
+		if (i.second is Int)
+			bundle.putInt(i.first, i.second.toString().toInt())
+		if (i.second is Float)
+			bundle.putFloat(i.first, i.second.toString().toFloat())
+		if (i.second is Double)
+			bundle.putDouble(i.first, i.second.toString().toDouble())
+	}
 	startActivity(context, bundle, context.packageName, clz.name, getOptionsBundle(context, enterAnim, exitAnim))
 }
 
-fun startActivity(clz: Class<out Activity>, options: Bundle, extraArray: ArrayList<String>? = null, vararg extra: String = arrayOf("")) {
-	val context = Toolkit.getTopActivityOrApp()
-	val bundle = Bundle()
-	for (index in 0 until extra.size) bundle.putString(index.toString(), extra[index])
-	bundle.putStringArrayList("array", extraArray)
-	startActivity(context, bundle, context.packageName, clz.name, options)
-}
-
-fun startActivityNoStack(targetActivity: Class<*>) = Toolkit.getTopActivityOrApp().startActivity(Intent(Toolkit.getTopActivityOrApp(), targetActivity).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
-
-fun intent(key: String): String? {
+fun intentString(key: String): String? {
 	val activity = Toolkit.getTopActivityOrApp() as Activity
 	return activity.intent.getStringExtra(key)
 }
 
-fun Fragment.navigate(navDestination: Int, vararg extra: String = arrayOf("")) {
+fun Activity.intentString(key: String): String? = this.intent.getStringExtra(key)
+fun Activity.intentInt(key: String): Int? = this.intent.getIntExtra(key, -1)
+fun Activity.intentFloat(key: String): Float? = this.intent.getFloatExtra(key, -1F)
+fun Activity.intentDouble(key: String): Double? = this.intent.getDoubleExtra(key, -1.0)
+fun Activity.intentBoolean(key: String): Boolean? = this.intent.getBooleanExtra(key, false)
+
+fun Fragment.navigate(fragment: Fragment, navDestination: Int, vararg extra: Pair<String, Any> = emptyArray()) {
 	val bundle = Bundle()
-	for (index in 0 until extra.size) bundle.putString(index.toString(), extra[index])
-	findNavController().navigate(navDestination, bundle)
+	for (i in extra) {
+		if (i.second is Boolean) bundle.putBoolean(i.first, i.second.toString().toBoolean())
+		if (i.second is String) bundle.putString(i.first, i.second.toString())
+		if (i.second is Int) bundle.putInt(i.first, i.second.toString().toInt())
+		if (i.second is Float) bundle.putFloat(i.first, i.second.toString().toFloat())
+		if (i.second is Double) bundle.putDouble(i.first, i.second.toString().toDouble())
+	}
+	fragment.findNavController().navigate(navDestination, bundle)
 }
 
-fun Fragment.argument(key: String): String = this.arguments!!.getString(key)!!
+fun Fragment.argumentString(key: String): String? = this.arguments?.getString(key)
+fun Fragment.argumentInt(key: String): Int? = this.arguments?.getInt(key)
+fun Fragment.argumentFloat(key: String): Float? = this.arguments?.getFloat(key)
+fun Fragment.argumentDouble(key: String): Double? = this.arguments?.getDouble(key)
+fun Fragment.argumentBoolean(key: String): Boolean? = this.arguments?.getBoolean(key)
 
 private fun getOptionsBundle(context: Context, enterAnim: Int, exitAnim: Int): Bundle? = ActivityOptionsCompat.makeCustomAnimation(context, enterAnim, exitAnim).toBundle()
 private fun startActivity(context: Context, extras: Bundle?, pkg: String, cls: String, options: Bundle?) {
