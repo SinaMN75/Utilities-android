@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.viewpager.widget.PagerAdapter
-import com.developersian.base.Util
+import com.developersian.util.extentions.picasso
 
 class ViewPager(private val context: Context, private val imageUrls: ArrayList<String>) : PagerAdapter() {
 	override fun getCount(): Int = imageUrls.size
@@ -13,7 +13,7 @@ class ViewPager(private val context: Context, private val imageUrls: ArrayList<S
 	override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) = container.removeView(`object` as View)
 	override fun instantiateItem(container: ViewGroup, position: Int): Any {
 		val imageView = ImageView(context)
-		Util().picasso(imageUrls[position], imageView)
+		picasso(imageUrls[position], imageView)
 		container.addView(imageView)
 		return imageView
 	}

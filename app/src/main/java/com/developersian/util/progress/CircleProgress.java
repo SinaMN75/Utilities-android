@@ -1,4 +1,5 @@
 package com.developersian.util.progress;
+
 import android.content.*;
 import android.content.res.*;
 import android.graphics.*;
@@ -7,7 +8,9 @@ import android.text.*;
 import android.util.*;
 import android.view.*;
 import com.developersian.*;
-import com.developersian.base.*;
+
+import static com.developersian.util.extentions.GeneralKt.*;
+
 public class CircleProgress extends View{
 private static final String INSTANCE_STATE="saved_instance";
 private static final String INSTANCE_TEXT_COLOR="text_color";
@@ -43,8 +46,8 @@ public CircleProgress(Context context,AttributeSet attrs){
 }
 public CircleProgress(Context context,AttributeSet attrs,int defStyleAttr){
 	super(context,attrs,defStyleAttr);
-	default_text_size=new Util().spToPx(getResources(),18);
-	min_size=(int)new Util().dpToPx(getResources(),100);
+	default_text_size = spToPx(getResources(), 18);
+	min_size = (int) dpToPx(getResources(), 100);
 	final TypedArray attributes=context.getTheme().obtainStyledAttributes(attrs,R.styleable.CircleProgress,defStyleAttr,0);
 	initByAttributes(attributes);
 	attributes.recycle();
