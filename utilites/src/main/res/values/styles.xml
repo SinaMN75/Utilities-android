@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="layoutDirection">
+        <item name="android:layoutDirection">rtl</item>
+    </style>
+
+    <style name="matchMatch"
+           parent="layoutDirection">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="matchWrap"
+           parent="layoutDirection">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="wrapWrap"
+           parent="layoutDirection">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="wrapMatch"
+           parent="layoutDirection">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="lineHorizontal">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/md_grey_700</item>
+    </style>
+
+    <style name="matchMatchVertical"
+           parent="matchMatch">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="matchMatchHorizontal"
+           parent="matchMatch">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="matchWrapVertical"
+           parent="matchWrap">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="matchWrapHorizontal"
+           parent="matchWrap">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="wrapWrapVertical"
+           parent="wrapWrap">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="wrapWrapHorizontal"
+           parent="wrapWrap">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="cardViewNormal"
+           parent="Base.CardView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="cardCornerRadius">20dp</item>
+    </style>
+
+
+    <declare-styleable name="RoundedImageView">
+        <attr name="riv_corner_radius" format="dimension"/>
+        <attr name="riv_corner_radius_top_left" format="dimension"/>
+        <attr name="riv_corner_radius_top_right" format="dimension"/>
+        <attr name="riv_corner_radius_bottom_left" format="dimension"/>
+        <attr name="riv_corner_radius_bottom_right" format="dimension"/>
+        <attr name="riv_border_width" format="dimension"/>
+        <attr name="riv_border_color" format="color"/>
+        <attr name="riv_mutate_background" format="boolean"/>
+        <attr name="riv_oval" format="boolean"/>
+        <attr name="android:scaleType"/>
+        <attr name="riv_tile_mode">
+            <enum name="clamp" value="0"/>
+            <enum name="repeat" value="1"/>
+            <enum name="mirror" value="2"/>
+        </attr>
+        <attr name="riv_tile_mode_x">
+            <enum name="clamp" value="0"/>
+            <enum name="repeat" value="1"/>
+            <enum name="mirror" value="2"/>
+        </attr>
+        <attr name="riv_tile_mode_y">
+            <enum name="clamp" value="0"/>
+            <enum name="repeat" value="1"/>
+            <enum name="mirror" value="2"/>
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="CircleProgress">
+        <attr name="circle_progress" format="integer"/>
+        <attr name="circle_max" format="integer"/>
+        <attr name="circle_unfinished_color" format="color"/>
+        <attr name="circle_finished_color" format="color"/>
+        <attr name="circle_text_size" format="dimension"/>
+        <attr name="circle_text_color" format="color"/>
+        <attr name="circle_prefix_text" format="string"/>
+        <attr name="circle_suffix_text" format="string"/>
+    </declare-styleable>
+    <declare-styleable name="DonutProgress">
+        <attr name="donut_progress" format="float"/>
+        <attr name="donut_max" format="integer"/>
+        <attr name="donut_unfinished_color" format="color"/>
+        <attr name="donut_finished_color" format="color"/>
+        <attr name="donut_finished_stroke_width" format="dimension"/>
+        <attr name="donut_unfinished_stroke_width" format="dimension"/>
+        <attr name="donut_text_size" format="dimension"/>
+        <attr name="donut_text_color" format="color"/>
+        <attr name="donut_prefix_text" format="string"/>
+        <attr name="donut_suffix_text" format="string"/>
+        <attr name="donut_text" format="string"/>
+        <attr name="donut_background_color" format="color"/>
+        <attr name="donut_inner_bottom_text" format="string"/>
+        <attr name="donut_inner_bottom_text_size" format="dimension"/>
+        <attr name="donut_inner_bottom_text_color" format="color"/>
+        <attr name="donut_circle_starting_degree" format="integer"/>
+        <attr name="donut_show_text" format="boolean"/>
+        <attr name="donut_inner_drawable" format="reference"/>
+    </declare-styleable>
+    <declare-styleable name="ArcProgress">
+        <attr name="arc_progress" format="integer"/>
+        <attr name="arc_angle" format="float"/>
+        <attr name="arc_stroke_width" format="dimension"/>
+        <attr name="arc_max" format="integer"/>
+        <attr name="arc_unfinished_color" format="color"/>
+        <attr name="arc_finished_color" format="color"/>
+        <attr name="arc_text_size" format="dimension"/>
+        <attr name="arc_text_color" format="color"/>
+        <attr name="arc_suffix_text" format="string"/>
+        <attr name="arc_suffix_text_size" format="dimension"/>
+        <attr name="arc_suffix_text_padding" format="dimension"/>
+        <attr name="arc_bottom_text" format="string"/>
+        <attr name="arc_bottom_text_size" format="dimension"/>
+    </declare-styleable>
+    <declare-styleable name="Themes">
+        <attr name="circleProgressStyle" format="reference"/>
+        <attr name="donutProgressStyle" format="reference"/>
+        <attr name="arcProgressStyle" format="reference"/>
+    </declare-styleable>
+    <declare-styleable name="SwitchButton">
+        <attr name="sb_shadow_radius"
+              format="reference|dimension"/>
+        <attr name="sb_shadow_offset"
+              format="reference|dimension"/>
+        <attr name="sb_shadow_color"
+              format="reference|color"/>
+        <attr name="sb_uncheck_color"
+              format="reference|color"/>
+        <attr name="sb_checked_color"
+              format="reference|color"/>
+        <attr name="sb_border_width"
+              format="reference|dimension"/>
+        <attr name="sb_checkline_color"
+              format="reference|color"/>
+        <attr name="sb_checkline_width"
+              format="reference|dimension"/>
+        <attr name="sb_uncheckcircle_color"
+              format="reference|color"/>
+        <attr name="sb_uncheckcircle_width"
+              format="reference|dimension"/>
+        <attr name="sb_uncheckcircle_radius"
+              format="reference|dimension"/>
+        <attr name="sb_checked"
+              format="reference|boolean"/>
+        <attr name="sb_shadow_effect"
+              format="reference|boolean"/>
+        <attr name="sb_effect_duration"
+              format="reference|integer"/>
+        <attr name="sb_button_color"
+              format="reference|color"/>
+        <attr name="sb_show_indicator"
+              format="reference|boolean"/>
+        <attr name="sb_background"
+              format="reference|color"/>
+        <attr name="sb_enable_effect"
+              format="reference|boolean"/>
+    </declare-styleable>
+    <declare-styleable name="MaskedEditText">
+        <attr name="mask"
+              format="string"/>
+        <attr name="allowed_chars"
+              format="string"/>
+        <attr name="denied_chars"
+              format="string"/>
+        <attr name="char_representation"
+              format="string"/>
+        <attr name="keep_hint"
+              format="boolean"/>
+    </declare-styleable>
+</resources>
