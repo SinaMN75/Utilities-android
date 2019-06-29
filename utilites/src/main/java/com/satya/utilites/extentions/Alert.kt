@@ -5,6 +5,9 @@ import android.view.View
 import com.blankj.utilcode.util.SnackbarUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.satya.utilites.R
+import com.satya.utilites.Utilities.OnItemSelectedListener
+import com.satya.utilites.Utilities.OnItemsSelectedListener
+import com.satya.utilites.Utilities.OnTextInputConfirmListener
 import com.yarolegovich.lovelydialog.LovelyChoiceDialog
 import com.yarolegovich.lovelydialog.LovelyInfoDialog
 import com.yarolegovich.lovelydialog.LovelyStandardDialog
@@ -51,7 +54,7 @@ fun Activity.dialogInfo(title: String, message: String, buttonTitle: String = "O
 		.show()
 }
 
-fun Activity.dialogSingleChoice(title: String, message: String, items: ArrayList<String>, onItemSelected: LovelyChoiceDialog.OnItemSelectedListener<String>, buttonTitle: String = "OK", icon: Int = R.drawable.circle, topColor: Int = R.color.colorPrimary, buttonColor: Int = R.color.colorAccent) {
+fun Activity.dialogSingleChoice(title: String, message: String, items: ArrayList<String>, onItemSelected: OnItemSelectedListener<String>, buttonTitle: String = "OK", icon: Int = R.drawable.circle, topColor: Int = R.color.colorPrimary, buttonColor: Int = R.color.colorAccent) {
 	LovelyChoiceDialog(this)
 		.setTopColorRes(topColor)
 		.setTitle(title)
@@ -63,7 +66,7 @@ fun Activity.dialogSingleChoice(title: String, message: String, items: ArrayList
 		.show()
 }
 
-fun Activity.dialogMultiChoice(title: String, message: String, list: ArrayList<String>, onItemSelected: LovelyChoiceDialog.OnItemsSelectedListener<String>, buttonTitle: String = "OK", icon: Int = R.drawable.circle, topColor: Int = R.color.colorPrimary, buttonColor: Int = R.color.colorAccent) {
+fun Activity.dialogMultiChoice(title: String, message: String, list: ArrayList<String>, onItemSelected: OnItemsSelectedListener<String>, buttonTitle: String = "OK", icon: Int = R.drawable.circle, topColor: Int = R.color.colorPrimary, buttonColor: Int = R.color.colorAccent) {
 	LovelyChoiceDialog(this)
 		.setTopColorRes(topColor)
 		.setMessage(message)
@@ -74,7 +77,7 @@ fun Activity.dialogMultiChoice(title: String, message: String, list: ArrayList<S
 		.show()
 }
 
-fun Activity.dialogInput(title: String, message: String, onTextInputConfirmListener: LovelyTextInputDialog.OnTextInputConfirmListener, buttonTitle: String = "OK", icon: Int = R.drawable.circle, topColor: Int = R.color.colorPrimary, buttonColor: Int = R.color.colorAccent) {
+fun Activity.dialogInput(title: String, message: String, onTextInputConfirmListener: OnTextInputConfirmListener, buttonTitle: String = "OK", icon: Int = R.drawable.circle, topColor: Int = R.color.colorPrimary, buttonColor: Int = R.color.colorAccent) {
 	LovelyTextInputDialog(this)
 		.setTopColorRes(topColor)
 		.setTitle(title)

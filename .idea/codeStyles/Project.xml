@@ -15,6 +15,10 @@
       <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
     </JetCodeStyleSettings>
     <codeStyleSettings language="JAVA">
+      <option name="KEEP_BLANK_LINES_IN_DECLARATIONS" value="1" />
+      <option name="KEEP_BLANK_LINES_IN_CODE" value="1" />
+      <option name="KEEP_BLANK_LINES_BETWEEN_PACKAGE_DECLARATION_AND_HEADER" value="1" />
+      <option name="KEEP_BLANK_LINES_BEFORE_RBRACE" value="1" />
       <option name="ALIGN_MULTILINE_BINARY_OPERATION" value="true" />
       <option name="ALIGN_MULTILINE_ASSIGNMENT" value="true" />
       <option name="ALIGN_MULTILINE_TERNARY_OPERATION" value="true" />
@@ -27,6 +31,11 @@
       <option name="KEEP_SIMPLE_METHODS_IN_ONE_LINE" value="true" />
       <option name="ARRAY_INITIALIZER_WRAP" value="1" />
       <option name="ENUM_CONSTANTS_WRAP" value="5" />
+      <indentOptions>
+        <option name="USE_TAB_CHARACTER" value="true" />
+        <option name="SMART_TABS" value="true" />
+        <option name="KEEP_INDENTS_ON_EMPTY_LINES" value="true" />
+      </indentOptions>
     </codeStyleSettings>
     <codeStyleSettings language="kotlin">
       <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />

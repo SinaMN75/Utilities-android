@@ -11,6 +11,7 @@ import android.view.inputmethod.InputMethodManager
 import android.webkit.WebView
 import androidx.core.content.FileProvider
 import com.blankj.utilcode.util.PermissionUtils
+import com.satya.utilites.Utilities.PermissionCallBack
 import com.satya.utilites.Utilities.Toolkit
 import java.io.File
 import java.io.IOException
@@ -54,9 +55,7 @@ fun Context.hideKeyboard(view: View) {
 
 fun View.hideKeyboardOnClick() = this.setOnClickListener { Toolkit.getTopActivityOrApp().hideKeyboard(this) }
 
-fun permission(permission: String, onGranted: PermissionUtils.SimpleCallback) {
-	PermissionUtils.permission(permission).callback(object : PermissionUtils.SimpleCallback {
-		override fun onGranted() = onGranted.onGranted()
-		override fun onDenied() = onGranted.onDenied()
-	}).request()
-}
+fun permission(permission: String, permissionCallBack: PermissionCallBack) = PermissionUtils.permission(permission).callback(object : PermissionUtils.SimpleCallback {
+	override fun onGranted() = permissionCallBack.onGranted()
+	override fun onDenied() = permissionCallBack.onDenied()
+}).request()
