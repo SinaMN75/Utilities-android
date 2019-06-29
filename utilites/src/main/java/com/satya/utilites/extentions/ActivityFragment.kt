@@ -10,32 +10,11 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.satya.utilites.Utilities.Toolkit
 
-fun startActivity(
-	clz: Class<out Activity>,
-	vararg extra: Pair<String, Any>,
-	enterAnim: Int = android.R.anim.slide_in_left,
-	exitAnim: Int = android.R.anim.slide_out_right
-                 ) {
+fun startActivity(clz: Class<out Activity>, vararg extra: Pair<String, Any>, enterAnim: Int = android.R.anim.slide_in_left, exitAnim: Int = android.R.anim.slide_out_right) {
 	val context = Toolkit.getTopActivityOrApp()
 	val bundle = Bundle()
-	for (i in extra) {
-		if (i.second is Boolean)
-			bundle.putBoolean(i.first, i.second.toString().toBoolean())
-		if (i.second is String)
-			bundle.putString(i.first, i.second.toString())
-		if (i.second is Int)
-			bundle.putInt(i.first, i.second.toString().toInt())
-		if (i.second is Float)
-			bundle.putFloat(i.first, i.second.toString().toFloat())
-		if (i.second is Double)
-			bundle.putDouble(i.first, i.second.toString().toDouble())
-	}
+	for (i in extra) putBundle(i, bundle)
 	startActivity(context, bundle, context.packageName, clz.name, getOptionsBundle(context, enterAnim, exitAnim))
-}
-
-fun intentString(key: String): String? {
-	val activity = Toolkit.getTopActivityOrApp() as Activity
-	return activity.intent.getStringExtra(key)
 }
 
 fun Activity.intentString(key: String): String? = this.intent.getStringExtra(key)
@@ -46,13 +25,7 @@ fun Activity.intentBoolean(key: String): Boolean? = this.intent.getBooleanExtra(
 
 fun Fragment.navigate(fragment: Fragment, navDestination: Int, vararg extra: Pair<String, Any> = emptyArray()) {
 	val bundle = Bundle()
-	for (i in extra) {
-		if (i.second is Boolean) bundle.putBoolean(i.first, i.second.toString().toBoolean())
-		if (i.second is String) bundle.putString(i.first, i.second.toString())
-		if (i.second is Int) bundle.putInt(i.first, i.second.toString().toInt())
-		if (i.second is Float) bundle.putFloat(i.first, i.second.toString().toFloat())
-		if (i.second is Double) bundle.putDouble(i.first, i.second.toString().toDouble())
-	}
+	for (i in extra) putBundle(i, bundle)
 	fragment.findNavController().navigate(navDestination, bundle)
 }
 
@@ -62,8 +35,15 @@ fun Fragment.argumentFloat(key: String): Float? = this.arguments?.getFloat(key)
 fun Fragment.argumentDouble(key: String): Double? = this.arguments?.getDouble(key)
 fun Fragment.argumentBoolean(key: String): Boolean? = this.arguments?.getBoolean(key)
 
-private fun getOptionsBundle(context: Context, enterAnim: Int, exitAnim: Int): Bundle? =
-	ActivityOptionsCompat.makeCustomAnimation(context, enterAnim, exitAnim).toBundle()
+private fun putBundle(i: Pair<String, Any>, bundle: Bundle) {
+	if (i.second is String) bundle.putString(i.first, i.second.toString())
+	if (i.second is Int) bundle.putInt(i.first, i.second.toString().toInt())
+	if (i.second is Float) bundle.putFloat(i.first, i.second.toString().toFloat())
+	if (i.second is Double) bundle.putDouble(i.first, i.second.toString().toDouble())
+	if (i.second is Boolean) bundle.putBoolean(i.first, i.second.toString().toBoolean())
+}
+
+private fun getOptionsBundle(context: Context, enterAnim: Int, exitAnim: Int): Bundle? = ActivityOptionsCompat.makeCustomAnimation(context, enterAnim, exitAnim).toBundle()
 
 private fun startActivity(context: Context, extras: Bundle?, pkg: String, cls: String, options: Bundle?) {
 	val intent = Intent(Intent.ACTION_VIEW)

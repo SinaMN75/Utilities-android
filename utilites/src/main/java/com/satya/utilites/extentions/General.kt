@@ -10,7 +10,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.webkit.WebView
 import androidx.core.content.FileProvider
-import com.google.gson.JsonObject
+import com.blankj.utilcode.util.PermissionUtils
 import com.satya.utilites.Utilities.Toolkit
 import java.io.File
 import java.io.IOException
@@ -18,11 +18,7 @@ import java.util.*
 
 class Foursome<out A, out B, out C, out D>(val first: A, val second: B, val third: C, val forth: D)
 
-fun log(tag: String, message: String) = Log.i(tag, message)
-fun log(tag: String, message: Int) = Log.i(tag, message.toString())
-fun log(tag: String, message: Float) = Log.i(tag, message.toString())
-fun log(tag: String, message: Double) = Log.i(tag, message.toString())
-fun log(tag: String, message: JsonObject) = Log.i(tag, message.toString())
+fun log(tag: String, message: Any) = Log.i(tag, message.toString())
 
 fun dpToPx(resources: Resources, dp: Float): Float = dp * resources.displayMetrics.density + 0.5f
 fun spToPx(resources: Resources, sp: Float): Float = sp * resources.displayMetrics.scaledDensity
@@ -57,3 +53,10 @@ fun Context.hideKeyboard(view: View) {
 }
 
 fun View.hideKeyboardOnClick() = this.setOnClickListener { Toolkit.getTopActivityOrApp().hideKeyboard(this) }
+
+fun permission(permission: String, onGranted: PermissionUtils.SimpleCallback) {
+	PermissionUtils.permission(permission).callback(object : PermissionUtils.SimpleCallback {
+		override fun onGranted() = onGranted.onGranted()
+		override fun onDenied() = onGranted.onDenied()
+	}).request()
+}

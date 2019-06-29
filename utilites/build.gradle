@@ -29,12 +29,11 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.airbnb.android:lottie:2.8.0'
     implementation 'com.yarolegovich:lovely-dialog:1.1.0'
-    implementation 'com.yanzhenjie.permission:x:2.0.1'
     implementation 'com.blankj:utilcodex:1.23.7'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.github.aliab:Persian-Date-Picker-Dialog:1.4'
     implementation 'android.arch.navigation:navigation-fragment-ktx:1.0.0'
-    implementation 'android.arch.navigation:navigation-ui-ktx:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'com.google.android.material:material:1.1.0-alpha07'
 }
