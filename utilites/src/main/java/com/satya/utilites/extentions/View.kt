@@ -1,8 +1,12 @@
 package com.satya.utilites.extentions
 
+import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageView
+import com.satya.utilites.Utilities.Toolkit
 import com.squareup.picasso.Picasso
+import java.io.IOException
+
 
 fun View.visible() {
 	this.visibility = View.VISIBLE
@@ -23,4 +27,14 @@ fun ImageView.picasso(url: String?, placeholder: Int) {
 
 fun ImageView.picasso(url: String?) {
 	if (url != "") Picasso.get().load(url).into(this)
+}
+
+fun ImageView.asset(path: String) {
+	try {
+		val image = Toolkit.getTopActivityOrApp().assets.open(path)
+		this.setImageDrawable(Drawable.createFromStream(image, null))
+		image.close()
+	} catch (ex: IOException) {
+		ex.printStackTrace()
+	}
 }

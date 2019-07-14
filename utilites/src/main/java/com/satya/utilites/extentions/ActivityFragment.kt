@@ -7,7 +7,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import com.satya.utilites.Utilities.Toolkit
 
 fun startActivity(clz: Class<out Activity>, vararg extra: Pair<String, Any>, enterAnim: Int = android.R.anim.slide_in_left, exitAnim: Int = android.R.anim.slide_out_right) {
@@ -23,10 +23,10 @@ fun Activity.intentFloat(key: String): Float? = this.intent.getFloatExtra(key, -
 fun Activity.intentDouble(key: String): Double? = this.intent.getDoubleExtra(key, -1.0)
 fun Activity.intentBoolean(key: String): Boolean? = this.intent.getBooleanExtra(key, false)
 
-fun Fragment.navigate(fragment: Fragment, navDestination: Int, vararg extra: Pair<String, Any> = emptyArray()) {
+fun Fragment.navigate(navDestination: Int, vararg extra: Pair<String, Any> = emptyArray()) {
 	val bundle = Bundle()
 	for (i in extra) putBundle(i, bundle)
-	fragment.findNavController().navigate(navDestination, bundle)
+	NavHostFragment.findNavController(this).navigate(navDestination, bundle)
 }
 
 fun Fragment.argumentString(key: String): String? = this.arguments?.getString(key)
