@@ -7,6 +7,8 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.fragment.NavHostFragment
 import com.satya.utilites.Utilities.Toolkit
 
@@ -29,11 +31,18 @@ fun Fragment.navigate(navDestination: Int, vararg extra: Pair<String, Any> = emp
 	NavHostFragment.findNavController(this).navigate(navDestination, bundle)
 }
 
+fun Fragment.transaction(layout: Int, fragment: Fragment) = this.fragmentManager!!.beginTransaction().setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right, android.R.anim.slide_in_left, android.R.anim.slide_out_right).replace(layout, fragment).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
+fun transaction(layout: Int, fragment: Fragment, fragmentManager: FragmentManager) = fragmentManager.beginTransaction().setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right, android.R.anim.slide_in_left, android.R.anim.slide_out_right).replace(layout, fragment).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit()
+
+fun transactionAddToBackStack(layout: Int, fragment: Fragment, fragmentManager: FragmentManager) = fragmentManager.beginTransaction().setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right, android.R.anim.slide_in_left, android.R.anim.slide_out_right).replace(layout, fragment).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).addToBackStack("").commit()
+fun Fragment.transactionAddToBackStack(layout: Int, fragment: Fragment) = this.fragmentManager!!.beginTransaction().setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right, android.R.anim.slide_in_left, android.R.anim.slide_out_right).replace(layout, fragment).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).addToBackStack("").commit()
+
 fun Fragment.argumentString(key: String): String? = this.arguments?.getString(key)
 fun Fragment.argumentInt(key: String): Int? = this.arguments?.getInt(key)
 fun Fragment.argumentFloat(key: String): Float? = this.arguments?.getFloat(key)
 fun Fragment.argumentDouble(key: String): Double? = this.arguments?.getDouble(key)
 fun Fragment.argumentBoolean(key: String): Boolean? = this.arguments?.getBoolean(key)
+
 
 private fun putBundle(i: Pair<String, Any>, bundle: Bundle) {
 	if (i.second is String) bundle.putString(i.first, i.second.toString())
