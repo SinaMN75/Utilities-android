@@ -7,7 +7,6 @@ import com.satya.utilites.Utilities.Toolkit
 import com.squareup.picasso.Picasso
 import java.io.IOException
 
-
 fun View.visible() {
 	this.visibility = View.VISIBLE
 }

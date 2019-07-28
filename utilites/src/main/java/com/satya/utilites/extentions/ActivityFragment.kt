@@ -43,7 +43,6 @@ fun Fragment.argumentFloat(key: String): Float? = this.arguments?.getFloat(key)
 fun Fragment.argumentDouble(key: String): Double? = this.arguments?.getDouble(key)
 fun Fragment.argumentBoolean(key: String): Boolean? = this.arguments?.getBoolean(key)
 
-
 private fun putBundle(i: Pair<String, Any>, bundle: Bundle) {
 	if (i.second is String) bundle.putString(i.first, i.second.toString())
 	if (i.second is Int) bundle.putInt(i.first, i.second.toString().toInt())
