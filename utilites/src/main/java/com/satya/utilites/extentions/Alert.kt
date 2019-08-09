@@ -29,14 +29,14 @@ fun toastLong(text: String, bgColor: Int = R.color.colorPrimary, textColor: Int 
 	ToastUtils.showLong(text)
 }
 
-fun Activity.dialogStandard(title: String, message: String, onPositiveClick: View.OnClickListener, icon: Int = R.drawable.circle, topColor: Int = R.color.colorPrimary, buttonColor: Int = R.color.colorAccent) {
+fun Activity.dialogStandard(title: String, message: String, onPositiveClick: View.OnClickListener?, icon: Int = R.drawable.circle, topColor: Int = R.color.colorPrimary, buttonColor: Int = R.color.colorAccent) {
 	LovelyStandardDialog(this, LovelyStandardDialog.ButtonLayout.VERTICAL)
 		.setTitle(title)
 		.setMessage(message)
 		.setTopColorRes(topColor)
 		.setButtonsColorRes(buttonColor)
 		.setIcon(icon)
-		.setPositiveButton(android.R.string.ok) { onPositiveClick.onClick(View(this)) }
+		.setPositiveButton(android.R.string.ok) { onPositiveClick?.onClick(View(this)) }
 		.setNegativeButton(android.R.string.no, null)
 		.show()
 }

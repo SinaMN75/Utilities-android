@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             style="@style/matchMatch">
+
+    <FrameLayout android:id="@+id/frameLayoutVideoViewActivity"
+                 style="@style/matchWrap">
+
+        <VideoView android:id="@+id/videoViewVideoViewActivity"
+                   style="@style/matchWrap"
+                   android:layout_gravity="center"/>
+
+        <ProgressBar android:id="@+id/progressBarVideoViewActivity"
+                     style="@style/matchWrap"
+                     android:layout_gravity="center"/>
+    </FrameLayout>
+
+</FrameLayout>
