@@ -10,7 +10,9 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.webkit.WebView
 import androidx.core.content.FileProvider
+import com.blankj.utilcode.util.NetworkUtils
 import com.blankj.utilcode.util.PermissionUtils
+import com.google.gson.JsonObject
 import com.satya.utilites.Utilities.PermissionCallBack
 import com.satya.utilites.Utilities.Toolkit
 import java.io.File
@@ -59,3 +61,15 @@ fun permission(permission: String, permissionCallBack: PermissionCallBack) = Per
 	override fun onGranted() = permissionCallBack.onGranted()
 	override fun onDenied() = permissionCallBack.onDenied()
 }).request()
+
+fun isConnected() = NetworkUtils.isConnected()
+
+fun jsonObject(vararg map: Pair<String, Any>): JsonObject {
+	val jsonObject = JsonObject()
+	for (i in map) {
+		if (i.second is Number) jsonObject.addProperty(i.first, i.second as Number)
+		if (i.second is String) jsonObject.addProperty(i.first, i.second as String)
+		if (i.second is Boolean) jsonObject.addProperty(i.first, i.second as Boolean)
+	}
+	return jsonObject
+}

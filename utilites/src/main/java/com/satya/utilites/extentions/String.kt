@@ -8,13 +8,13 @@ import java.text.DecimalFormat
 import java.text.NumberFormat
 import java.util.*
 
-fun TextView.getTrimmedString(): String = this.text.toString().trim()
+fun TextView.trimmedString(): String = this.text.toString().trim()
 
 fun String.validatePhoneNumber(): Boolean = this.trim().length in 10..14 && this.trim().substring(0, 3).contains("0") || this.trim().substring(0, 3).contains("9")
 
-fun TextView.lengthOfEditText(): Int = this.getTrimmedString().length
+fun TextView.trimmedLength(): Int = this.trimmedString().length
 
-fun EditText.validateInputByLength(errorText: String, length: Int): Boolean = if (this.lengthOfEditText() < length) {
+fun EditText.validateInputByLength(errorText: String, length: Int): Boolean = if (this.trimmedLength() < length) {
 	this.error = errorText
 	false
 } else true

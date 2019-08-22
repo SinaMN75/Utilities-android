@@ -29,19 +29,20 @@ fun toastLong(text: String, bgColor: Int = R.color.colorPrimary, textColor: Int 
 	ToastUtils.showLong(text)
 }
 
-fun Activity.dialogStandard(title: String, message: String, onPositiveClick: View.OnClickListener?, icon: Int = R.drawable.circle, topColor: Int = R.color.colorPrimary, buttonColor: Int = R.color.colorAccent) {
+fun Activity.dialogStandard(title: String = "Title", message: String = "", icon: Int = R.drawable.circle, topColor: Int = R.color.colorPrimary, buttonColor: Int = R.color.colorAccent, positiveButtonText: String = "OK", negativeButtonText: String = "No", neutralButtonText: String = "Cancel", onPositiveClick: View.OnClickListener? = null, onNegativeClick: View.OnClickListener? = null, onNeutralClick: View.OnClickListener? = null) {
 	LovelyStandardDialog(this, LovelyStandardDialog.ButtonLayout.VERTICAL)
 		.setTitle(title)
 		.setMessage(message)
 		.setTopColorRes(topColor)
 		.setButtonsColorRes(buttonColor)
 		.setIcon(icon)
-		.setPositiveButton(android.R.string.ok) { onPositiveClick?.onClick(View(this)) }
-		.setNegativeButton(android.R.string.no, null)
+		.setPositiveButton(positiveButtonText) { onPositiveClick?.onClick(View(this)) }
+		.setNegativeButton(negativeButtonText) { onNegativeClick?.onClick(View(this)) }
+		.setNeutralButton(neutralButtonText) { onNeutralClick?.onClick(View(this)) }
 		.show()
 }
 
-fun Activity.dialogInfo(title: String, message: String, buttonTitle: String = "OK", showAgain: Boolean = false, notShowAgainId: Int = 0, icon: Int = R.drawable.circle, topColor: Int = R.color.colorPrimary, buttonColor: Int = R.color.colorAccent) {
+fun Activity.dialogInfo(title: String = "Title", message: String = "", buttonTitle: String = "OK", showAgain: Boolean = false, notShowAgainId: Int = 0, icon: Int = R.drawable.circle, topColor: Int = R.color.colorPrimary, buttonColor: Int = R.color.colorAccent) {
 	LovelyInfoDialog(this)
 		.setTopColorRes(topColor)
 		.setIcon(icon)
@@ -54,7 +55,7 @@ fun Activity.dialogInfo(title: String, message: String, buttonTitle: String = "O
 		.show()
 }
 
-fun Activity.dialogSingleChoice(title: String, message: String, items: ArrayList<String>, onItemSelected: OnItemSelectedListener<String>, buttonTitle: String = "OK", icon: Int = R.drawable.circle, topColor: Int = R.color.colorPrimary, buttonColor: Int = R.color.colorAccent) {
+fun Activity.dialogSingleChoice(title: String = "Title", message: String = "", items: ArrayList<String>, onItemSelected: OnItemSelectedListener<String>, buttonTitle: String = "OK", icon: Int = R.drawable.circle, topColor: Int = R.color.colorPrimary, buttonColor: Int = R.color.colorAccent) {
 	LovelyChoiceDialog(this)
 		.setTopColorRes(topColor)
 		.setTitle(title)
@@ -66,7 +67,7 @@ fun Activity.dialogSingleChoice(title: String, message: String, items: ArrayList
 		.show()
 }
 
-fun Activity.dialogMultiChoice(title: String, message: String, list: ArrayList<String>, onItemSelected: OnItemsSelectedListener<String>, buttonTitle: String = "OK", icon: Int = R.drawable.circle, topColor: Int = R.color.colorPrimary, buttonColor: Int = R.color.colorAccent) {
+fun Activity.dialogMultiChoice(title: String = "", message: String = "", list: ArrayList<String>, onItemSelected: OnItemsSelectedListener<String>, buttonTitle: String = "OK", icon: Int = R.drawable.circle, topColor: Int = R.color.colorPrimary, buttonColor: Int = R.color.colorAccent) {
 	LovelyChoiceDialog(this)
 		.setTopColorRes(topColor)
 		.setMessage(message)
@@ -77,7 +78,7 @@ fun Activity.dialogMultiChoice(title: String, message: String, list: ArrayList<S
 		.show()
 }
 
-fun Activity.dialogInput(title: String, message: String, onTextInputConfirmListener: OnTextInputConfirmListener, buttonTitle: String = "OK", icon: Int = R.drawable.circle, topColor: Int = R.color.colorPrimary, buttonColor: Int = R.color.colorAccent) {
+fun Activity.dialogInput(title: String = "", message: String = "", onTextInputConfirmListener: OnTextInputConfirmListener, buttonTitle: String = "OK", icon: Int = R.drawable.circle, topColor: Int = R.color.colorPrimary, buttonColor: Int = R.color.colorAccent) {
 	LovelyTextInputDialog(this)
 		.setTopColorRes(topColor)
 		.setTitle(title)
