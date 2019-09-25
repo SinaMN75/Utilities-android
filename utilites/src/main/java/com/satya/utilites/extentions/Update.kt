@@ -6,7 +6,7 @@ import android.net.Uri
 import android.view.View
 import com.blankj.utilcode.util.AppUtils
 import com.satya.utilites.R
-import com.satya.utilites.Utilities.Toolkit
+import com.satya.utilites.utilities.Toolkit
 import com.yarolegovich.lovelydialog.LovelyStandardDialog
 
 enum class UpdateStatus {

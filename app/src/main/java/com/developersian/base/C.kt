@@ -1,5 +1,3 @@
 package com.developersian.base
 
-object C {
-
-}
+object C

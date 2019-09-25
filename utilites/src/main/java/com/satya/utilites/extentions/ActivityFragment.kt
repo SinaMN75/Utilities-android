@@ -10,7 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.fragment.NavHostFragment
-import com.satya.utilites.Utilities.Toolkit
+import com.satya.utilites.utilities.Toolkit
+
+fun getTopActivity(): Activity = Toolkit.getTopActivityOrApp() as Activity
 
 fun startActivity(clz: Class<out Activity>, vararg extra: Pair<String, Any>, enterAnim: Int = android.R.anim.slide_in_left, exitAnim: Int = android.R.anim.slide_out_right) {
 	val context = Toolkit.getTopActivityOrApp()
@@ -19,11 +21,22 @@ fun startActivity(clz: Class<out Activity>, vararg extra: Pair<String, Any>, ent
 	startActivity(context, bundle, context.packageName, clz.name, getOptionsBundle(context, enterAnim, exitAnim))
 }
 
-fun Activity.intentString(key: String): String? = this.intent.getStringExtra(key)
-fun Activity.intentInt(key: String): Int? = this.intent.getIntExtra(key, -1)
-fun Activity.intentFloat(key: String): Float? = this.intent.getFloatExtra(key, -1F)
-fun Activity.intentDouble(key: String): Double? = this.intent.getDoubleExtra(key, -1.0)
-fun Activity.intentBoolean(key: String): Boolean? = this.intent.getBooleanExtra(key, false)
+fun Activity.intentString(key: String): String? = intent.getStringExtra(key)
+fun Activity.intentInt(key: String): Int? = intent.getIntExtra(key, -1)
+fun Activity.intentFloat(key: String): Float? = intent.getFloatExtra(key, -1F)
+fun Activity.intentDouble(key: String): Double? = intent.getDoubleExtra(key, -1.0)
+fun Activity.intentBoolean(key: String): Boolean? = intent.getBooleanExtra(key, false)
+
+fun startActivityForImage(requestCode: Int) = getTopActivity().startActivityForResult(Intent.createChooser(Intent().setType("image/*").setAction(Intent.ACTION_GET_CONTENT), "Select Picture"), requestCode)
+
+fun startActivityForVideo(requestCode: Int) = getTopActivity().startActivityForResult(Intent.createChooser(Intent().setType("video/*").setAction(Intent.ACTION_GET_CONTENT), "Select Video"), requestCode)
+
+fun startActivity(clz: Class<out Activity>, options: Bundle, vararg extra: Pair<String, Any>) {
+	val context = Toolkit.getTopActivityOrApp()
+	val bundle = Bundle()
+	for (i in extra) putBundle(i, bundle)
+	startActivity(context, bundle, context.packageName, clz.name, options)
+}
 
 fun Fragment.navigate(navDestination: Int, vararg extra: Pair<String, Any> = emptyArray()) {
 	val bundle = Bundle()

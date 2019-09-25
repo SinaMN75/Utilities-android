@@ -5,7 +5,7 @@ import android.view.ViewTreeObserver
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.satya.utilites.Utilities.Toolkit
+import com.satya.utilites.utilities.Toolkit
 import kotlin.math.floor
 
 private fun setup(recyclerView: RecyclerView, nested: Boolean = true, hasFixedSize: Boolean = true) {
@@ -28,13 +28,13 @@ fun RecyclerView.gridLayoutManager(spanCount: Int, nested: Boolean = true, hasFi
 	setup(this, nested, hasFixedSize)
 }
 
-fun RecyclerView.setupSpanCount(context: Context, width: Float) {
+fun RecyclerView.setupSpanCount(context: Context, width: Int) {
 	val rv = this
 	this.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
 		override fun onGlobalLayout() {
 			val layoutManager = GridLayoutManager(context, 1)
 			rv.viewTreeObserver.removeOnGlobalLayoutListener(this)
-			layoutManager.spanCount = floor((rv.measuredWidth / dpToPx(resources, width)).toDouble()).toInt()
+			layoutManager.spanCount = floor((rv.measuredWidth / width.dpToPx()).toDouble()).toInt()
 			layoutManager.requestLayout()
 			rv.layoutManager = layoutManager
 		}

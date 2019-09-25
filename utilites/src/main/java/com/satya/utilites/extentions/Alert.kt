@@ -5,9 +5,6 @@ import android.view.View
 import com.blankj.utilcode.util.SnackbarUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.satya.utilites.R
-import com.satya.utilites.Utilities.OnItemSelectedListener
-import com.satya.utilites.Utilities.OnItemsSelectedListener
-import com.satya.utilites.Utilities.OnTextInputConfirmListener
 import com.yarolegovich.lovelydialog.LovelyChoiceDialog
 import com.yarolegovich.lovelydialog.LovelyInfoDialog
 import com.yarolegovich.lovelydialog.LovelyStandardDialog
@@ -55,37 +52,47 @@ fun Activity.dialogInfo(title: String = "Title", message: String = "", buttonTit
 		.show()
 }
 
-fun Activity.dialogSingleChoice(title: String = "Title", message: String = "", items: ArrayList<String>, onItemSelected: OnItemSelectedListener<String>, buttonTitle: String = "OK", icon: Int = R.drawable.circle, topColor: Int = R.color.colorPrimary, buttonColor: Int = R.color.colorAccent) {
+fun Activity.dialogSingleChoice(title: String = "Title", message: String = "", items: ArrayList<String>, onItemSelected: (Int, String) -> Unit, icon: Int = R.drawable.circle, topColor: Int = R.color.colorPrimary) {
 	LovelyChoiceDialog(this)
 		.setTopColorRes(topColor)
 		.setTitle(title)
-		.setConfirmButtonColor(buttonColor)
-		.setConfirmButtonText(buttonTitle)
 		.setIcon(icon)
 		.setMessage(message)
-		.setItems(items) { position, item -> onItemSelected.onItemSelected(position, item) }
+		.setItems(items) { position, item -> onItemSelected(position, item) }
 		.show()
 }
 
-fun Activity.dialogMultiChoice(title: String = "", message: String = "", list: ArrayList<String>, onItemSelected: OnItemsSelectedListener<String>, buttonTitle: String = "OK", icon: Int = R.drawable.circle, topColor: Int = R.color.colorPrimary, buttonColor: Int = R.color.colorAccent) {
+fun Activity.dialogMultiChoice(title: String = "", message: String = "", list: ArrayList<String>, onItemSelected: (MutableList<Int>, MutableList<String>) -> Unit, buttonTitle: String = "OK", icon: Int = R.drawable.circle, topColor: Int = R.color.colorPrimary, buttonColor: Int = R.color.colorAccent) {
 	LovelyChoiceDialog(this)
 		.setTopColorRes(topColor)
 		.setMessage(message)
 		.setConfirmButtonColor(buttonColor)
 		.setTitle(title)
 		.setIcon(icon)
-		.setItemsMultiChoice(list) { positions, items -> onItemSelected.onItemsSelected(positions, items) }.setConfirmButtonText(buttonTitle)
+		.setItemsMultiChoice(list) { positions, items -> onItemSelected(positions, items) }.setConfirmButtonText(buttonTitle)
 		.show()
 }
 
-fun Activity.dialogInput(title: String = "", message: String = "", onTextInputConfirmListener: OnTextInputConfirmListener, buttonTitle: String = "OK", icon: Int = R.drawable.circle, topColor: Int = R.color.colorPrimary, buttonColor: Int = R.color.colorAccent) {
+fun Activity.dialogInput(title: String = "", message: String = "", onTextInputConfirmListener: (String) -> Unit, buttonTitle: String = "OK", icon: Int = R.drawable.circle, topColor: Int = R.color.colorPrimary, buttonColor: Int = R.color.colorAccent) {
 	LovelyTextInputDialog(this)
 		.setTopColorRes(topColor)
 		.setTitle(title)
 		.setConfirmButtonColor(buttonColor)
 		.setMessage(message)
 		.setIcon(icon)
-		.setConfirmButton(buttonTitle) { text -> onTextInputConfirmListener.onTextInputConfirmed(text) }
+		.setConfirmButton(buttonTitle) { text -> onTextInputConfirmListener(text) }
 		.show()
 }
 
+//fun alertDialog(context: Context, titleText: String, dec: String) {
+//	val view = LayoutInflater.from(context).inflate(R.layout.dialog_alert, null)
+//
+//	view.textViewTitleAlertDialog.text = titleText
+//	view.textViewDecAlertDialog.text = dec
+//	view.buttonOKAlertDialog.text = context.getString(R.string.ok)
+//
+//	val alertDialog = AlertDialog.Builder(context).setView(view).create()
+//	alertDialog.setCancelable(false)
+//	alertDialog.show()
+//	view.buttonOKAlertDialog.setOnClickListener { alertDialog.dismiss() }
+//}

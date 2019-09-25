@@ -1,4 +1,4 @@
-package com.satya.utilites.progress;
+package com.satya.utilites.customViews.progress;
 
 import android.content.*;
 import android.content.res.*;
@@ -7,6 +7,7 @@ import android.os.*;
 import android.text.*;
 import android.util.*;
 import android.view.*;
+
 import com.satya.utilites.*;
 
 import java.text.*;
@@ -68,14 +69,14 @@ public class ArcProgress extends View {
 
     public ArcProgress(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        default_text_size = spToPx(getResources(), 18);
-        min_size = (int) dpToPx(getResources(), 100);
-        default_text_size = spToPx(getResources(), 40);
-        default_suffix_text_size = spToPx(getResources(), 15);
-        default_suffix_padding = dpToPx(getResources(), 4);
+	    default_text_size = spToPx(18);
+	    min_size = dpToPx(100);
+	    default_text_size = spToPx(40);
+	    default_suffix_text_size = spToPx(15);
+	    default_suffix_padding = dpToPx(4);
         default_suffix_text = "%";
-        default_bottom_text_size = spToPx(getResources(), 10);
-        default_stroke_width = dpToPx(getResources(), 4);
+	    default_bottom_text_size = spToPx(10);
+	    default_stroke_width = dpToPx(4);
         TypedArray attributes = context.getTheme().obtainStyledAttributes(attrs, R.styleable.ArcProgress, defStyleAttr, 0);
         initByAttributes(attributes);
         attributes.recycle();

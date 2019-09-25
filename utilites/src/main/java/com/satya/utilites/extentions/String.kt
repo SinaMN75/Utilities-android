@@ -4,6 +4,10 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
 import android.widget.TextView
+import com.blankj.utilcode.util.RegexUtils
+import com.blankj.utilcode.util.SpanUtils
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
 import java.text.DecimalFormat
 import java.text.NumberFormat
 import java.util.*
@@ -38,6 +42,12 @@ fun EditText.showMoneyAsTyping(editable: Editable, watcher: TextWatcher) {
 }
 
 fun Int.ageFromDate(): Int = Calendar.getInstance().get(Calendar.YEAR) - this
+
+fun String.isEmail(): Boolean = RegexUtils.isEmail(this)
+
+fun TextView.strikethrough() = SpanUtils.with(this).setStrikethrough()
+
+fun String.toJson(): JsonObject = JsonParser().parse(this).asJsonObject
 
 fun String.getPersianNumber(): String {
 	var textPost = this

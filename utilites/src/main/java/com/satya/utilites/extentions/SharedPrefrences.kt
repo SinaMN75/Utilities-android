@@ -1,7 +1,7 @@
 package com.satya.utilites.extentions
 
 import android.content.Context
-import com.satya.utilites.Utilities.Toolkit
+import com.satya.utilites.utilities.Toolkit
 
 private val sharedPreferences = Toolkit.getTopActivityOrApp().getSharedPreferences("myPreferences", Context.MODE_PRIVATE)
 

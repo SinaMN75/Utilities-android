@@ -1,4 +1,4 @@
-package com.satya.utilites.progress;
+package com.satya.utilites.customViews.progress;
 
 import android.content.*;
 import android.content.res.*;
@@ -7,6 +7,7 @@ import android.os.*;
 import android.text.*;
 import android.util.*;
 import android.view.*;
+
 import com.satya.utilites.*;
 
 import static com.satya.utilites.extentions.GeneralKt.*;
@@ -78,10 +79,10 @@ public class DonutProgress extends View {
 
     public DonutProgress(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        default_text_size = spToPx(getResources(), 18);
-        min_size = (int) dpToPx(getResources(), 100);
-        default_stroke_width = dpToPx(getResources(), 10);
-        default_inner_bottom_text_size = spToPx(getResources(), 18);
+	    default_text_size = spToPx(18);
+	    min_size = dpToPx(100);
+	    default_stroke_width = dpToPx(10);
+	    default_inner_bottom_text_size = spToPx(18);
         final TypedArray attributes = context.getTheme().obtainStyledAttributes(attrs, R.styleable.DonutProgress, defStyleAttr, 0);
         initByAttributes(attributes);
         attributes.recycle();

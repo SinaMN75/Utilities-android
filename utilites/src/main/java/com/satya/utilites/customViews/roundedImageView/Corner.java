@@ -1,4 +1,4 @@
-package com.satya.utilites.roundedImageView;
+package com.satya.utilites.customViews.roundedImageView;
 
 import androidx.annotation.*;
 

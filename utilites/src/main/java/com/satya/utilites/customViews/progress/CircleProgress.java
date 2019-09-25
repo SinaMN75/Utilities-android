@@ -1,4 +1,4 @@
-package com.satya.utilites.progress;
+package com.satya.utilites.customViews.progress;
 
 import android.content.*;
 import android.content.res.*;
@@ -7,6 +7,7 @@ import android.os.*;
 import android.text.*;
 import android.util.*;
 import android.view.*;
+
 import com.satya.utilites.*;
 
 import static com.satya.utilites.extentions.GeneralKt.*;
@@ -23,8 +24,6 @@ private static final String INSTANCE_SUFFIX="suffix";
 private static final String INSTANCE_PREFIX="prefix";
 private final int default_finished_color=Color.rgb(66,145,241);
 private final int default_unfinished_color=Color.rgb(204,204,204);
-private final int default_text_color=Color.WHITE;
-private final int default_max=100;
 private final float default_text_size;
 private final int min_size;
 private Paint textPaint;
@@ -46,8 +45,8 @@ public CircleProgress(Context context,AttributeSet attrs){
 }
 public CircleProgress(Context context,AttributeSet attrs,int defStyleAttr){
 	super(context,attrs,defStyleAttr);
-	default_text_size = spToPx(getResources(), 18);
-	min_size = (int) dpToPx(getResources(), 100);
+	default_text_size = spToPx(18);
+	min_size = dpToPx(100);
 	final TypedArray attributes=context.getTheme().obtainStyledAttributes(attrs,R.styleable.CircleProgress,defStyleAttr,0);
 	initByAttributes(attributes);
 	attributes.recycle();
@@ -56,9 +55,11 @@ public CircleProgress(Context context,AttributeSet attrs,int defStyleAttr){
 protected void initByAttributes(TypedArray attributes){
 	finishedColor=attributes.getColor(R.styleable.CircleProgress_circle_finished_color,default_finished_color);
 	unfinishedColor=attributes.getColor(R.styleable.CircleProgress_circle_unfinished_color,default_unfinished_color);
-	textColor=attributes.getColor(R.styleable.CircleProgress_circle_text_color,default_text_color);
+	int default_text_color = Color.WHITE;
+	textColor = attributes.getColor(R.styleable.CircleProgress_circle_text_color, default_text_color);
 	textSize=attributes.getDimension(R.styleable.CircleProgress_circle_text_size,default_text_size);
-	setMax(attributes.getInt(R.styleable.CircleProgress_circle_max,default_max));
+	int default_max = 100;
+	setMax(attributes.getInt(R.styleable.CircleProgress_circle_max, default_max));
 	setProgress(attributes.getInt(R.styleable.CircleProgress_circle_progress,0));
 	if(attributes.getString(R.styleable.CircleProgress_circle_prefix_text)!=null){
 		setPrefixText(attributes.getString(R.styleable.CircleProgress_circle_prefix_text));

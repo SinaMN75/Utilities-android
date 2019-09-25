@@ -1,4 +1,4 @@
-package com.developersian.view.video
+package com.developersian.view.media
 
 import android.media.MediaPlayer
 import android.net.Uri
@@ -37,7 +37,6 @@ class VideoViewActivity : AppCompatActivity() {
 	
 	override fun onStart() {
 		super.onStart()
-		
 		val uri = Uri.parse(videoUrl)
 		videoViewVideoViewActivity.setVideoURI(uri)
 		progressBarVideoViewActivity.visible()
@@ -45,14 +44,12 @@ class VideoViewActivity : AppCompatActivity() {
 	
 	override fun onPause() {
 		super.onPause()
-		
 		videoViewVideoViewActivity.pause()
 		playbackPosition = videoViewVideoViewActivity.currentPosition
 	}
 	
 	override fun onStop() {
 		videoViewVideoViewActivity.stopPlayback()
-		
 		super.onStop()
 	}
 }

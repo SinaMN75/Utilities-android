@@ -5,7 +5,7 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import com.satya.utilites.R
-import com.satya.utilites.Utilities.Toolkit
+import com.satya.utilites.utilities.Toolkit
 
 fun color(color: Int) = ContextCompat.getColor(Toolkit.getTopActivityOrApp(), color)
 
