@@ -1,5 +1,8 @@
 <component name="ProjectCodeStyleConfiguration">
   <code_scheme name="Project" version="173">
+    <AndroidXmlCodeStyleSettings>
+      <option name="ARRANGEMENT_SETTINGS_MIGRATED_TO_191" value="true" />
+    </AndroidXmlCodeStyleSettings>
     <JavaCodeStyleSettings>
       <option name="SPACE_AROUND_TYPE_BOUNDS_IN_TYPE_PARAMETERS" value="false" />
       <option name="BLANK_LINES_AROUND_INITIALIZER" value="0" />

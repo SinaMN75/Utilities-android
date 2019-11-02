@@ -21,6 +21,14 @@ fun startActivity(clz: Class<out Activity>, vararg extra: Pair<String, Any>, ent
 	startActivity(context, bundle, context.packageName, clz.name, getOptionsBundle(context, enterAnim, exitAnim))
 }
 
+fun Activity.startActivityAndFinishCurrent(clz: Class<out Activity>, vararg extra: Pair<String, Any>, enterAnim: Int = android.R.anim.slide_in_left, exitAnim: Int = android.R.anim.slide_out_right) {
+	val context = Toolkit.getTopActivityOrApp()
+	val bundle = Bundle()
+	for (i in extra) putBundle(i, bundle)
+	startActivity(context, bundle, context.packageName, clz.name, getOptionsBundle(context, enterAnim, exitAnim))
+	this.finish()
+}
+
 fun Activity.intentString(key: String): String? = intent.getStringExtra(key)
 fun Activity.intentInt(key: String): Int? = intent.getIntExtra(key, -1)
 fun Activity.intentFloat(key: String): Float? = intent.getFloatExtra(key, -1F)

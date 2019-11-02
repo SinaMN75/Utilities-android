@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">Utilites</string>
 
-    <!--Persian Months-->
     <string-array name="persianMonth">
         <item>فروردین</item>
         <item>اردیبهشت</item>
@@ -32,10 +31,36 @@
         <item>December</item>
     </string-array>
 
-    <!--Gender-->
     <string-array name="gender">
         <item>خانم</item>
         <item>آقا</item>
         <item>سایر</item>
     </string-array>
+
+    <string name="todo">TODO</string>
+    <string name="validate">تایید</string>
+    <string name="more">بیشتر</string>
+    <string name="noConnectionTitle">ارتباط با اینترنت برقرار نیست</string>
+    <string name="support">پشتیبانی</string>
+    <string name="settings">تنظیمات</string>
+    <string name="submit">ثبت</string>
+    <string name="lastName">نام خانوادگی</string>
+    <string name="firstName">نام</string>
+    <string name="home">خانه</string>
+    <string name="profile">پروفایل</string>
+    <string name="moreInfo">اطلاعات بیشتر</string>
+    <string name="comments">نظرات کاربران</string>
+    <string name="add">اضافه کردن</string>
+    <string name="_0">0</string>
+    <string name="_1">1</string>
+    <string name="title">عنوان</string>
+    <string name="province">استان</string>
+    <string name="city">شهر</string>
+    <string name="address">آدرس</string>
+    <string name="clickTwiceToExitTheApp">برای خروج یک بار دیگر دکمه برگشت را فشار دهید.</string>
+    <string name="tryAgain">تلاش مجدد</string>
+    <string name="exit">خروج</string>
+    <string name="cancel">لفو</string>
+    <string name="yes">بله</string>
+    <string name="no">خیر</string>
 </resources>

@@ -9,6 +9,7 @@ import android.os.*;
 import android.util.*;
 import android.view.*;
 import android.widget.*;
+
 import com.satya.utilites.*;
 
 public class SwitchButton extends View implements Checkable{
